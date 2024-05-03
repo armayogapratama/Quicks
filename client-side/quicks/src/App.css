@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  background-color: #fff;
+  font-family: "Lato", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+/* #root {
+  --lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  --lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  --primary-color {
+    --first-color {
+      color: #2f80ed;
+    }
+    --second-color {
+      color: #4f4f4f;
+    }
+    --third-color {
+      color: #828282;
+    }
+    --fourth-color {
+      color: #e0e0e0;
+    }
+  }
+
+  --indicator-color {
+    --first-color {
+      color: #f8b76b;
+    }
+    --second-color {
+      color: #8785ff;
+    }
+    --third-color {
+      color: #eb5757;
+    }
+    --fourth-color {
+      color: #f2c94c;
+    }
+  }
+
+  --chats-color {
+    --first-color {
+      --primary-chat-color {
+        color: #fc33d3;
+      }
+      --secondary-chat-color {
+        color: #e5a443;
+      }
+    }
+    --second-color {
+      --primary-chat-color {
+        color: #eedcff;
+      }
+      --secondary-chat-color {
+        color: #9b51e0;
+      }
+    }
+    --third-color {
+      --primary-chat-color {
+        color: #d2f2ea;
+      }
+      --secondary-chat-color {
+        color: #43b78d;
+      }
+    }
+  }
+
+  --stikers-color {
+    --first-color {
+      color: #e9f3ff;
+    }
+    --second-color {
+      color: #fdcfa4;
+    }
+    --third-color {
+      color: #f9e9c3;
+    }
+    --fourth-color {
+      color: #afebdb;
+    }
+    --fifth-color {
+      color: #cbf1c2;
+    }
+    --sixth-color {
+      color: #cfcef9;
+    }
+    --seventh-color {
+      color: #f9e0fd;
+    }
+  }
+} */

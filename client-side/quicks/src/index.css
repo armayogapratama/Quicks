@@ -1,0 +1,153 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lato-regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  --lato-bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  --primary-color {
+    --first-color {
+      color: #2f80ed;
+    }
+    --second-color {
+      color: #4f4f4f;
+    }
+    --third-color {
+      color: #828282;
+    }
+    --fourth-color {
+      color: #e0e0e0;
+    }
+  }
+
+  --indicator-color {
+    --first-color {
+      color: #f8b76b;
+    }
+    --second-color {
+      color: #8785ff;
+    }
+    --third-color {
+      color: #eb5757;
+    }
+    --fourth-color {
+      color: #f2c94c;
+    }
+  }
+
+  --chats-color {
+    --first-color {
+      --primary-chat-color {
+        color: #fc33d3;
+      }
+      --secondary-chat-color {
+        color: #e5a443;
+      }
+    }
+    --second-color {
+      --primary-chat-color {
+        color: #eedcff;
+      }
+      --secondary-chat-color {
+        color: #9b51e0;
+      }
+    }
+    --third-color {
+      --primary-chat-color {
+        color: #d2f2ea;
+      }
+      --secondary-chat-color {
+        color: #43b78d;
+      }
+    }
+  }
+
+  --stikers-color {
+    --first-color {
+      color: #e9f3ff;
+    }
+    --second-color {
+      color: #fdcfa4;
+    }
+    --third-color {
+      color: #f9e9c3;
+    }
+    --fourth-color {
+      color: #afebdb;
+    }
+    --fifth-color {
+      color: #cbf1c2;
+    }
+    --sixth-color {
+      color: #cfcef9;
+    }
+    --seventh-color {
+      color: #f9e0fd;
+    }
+  }
+} */
+
+/* a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
