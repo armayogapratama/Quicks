@@ -6,6 +6,7 @@ import { GoSearch } from "react-icons/go";
 import { PiChatsDuotone } from "react-icons/pi";
 import { FaTasks } from "react-icons/fa";
 import { useState } from "react";
+import MessageBoxView from "../MessageBoxViews/MessageBoxView";
 
 export default function HomeView() {
   const [active, setActive] = useState(false);
@@ -29,12 +30,16 @@ export default function HomeView() {
             <ChatView />
           </div> */}
 
-          <div>
+          {/* <div>
             <TaskView />
+          </div> */}
+
+          <div>
+            <MessageBoxView />
           </div>
 
           {!active ? (
-            <div className="flex flex-row]">
+            <div className="flex flex-row">
               <button
                 onClick={() => setActive(true)}
                 className="flex justify-center items-center relative bottom-[-43.5rem] right-[-75rem] bg-[#2f80ed] w-[2.5rem] h-[2.5rem] rounded-[50%] cursor-pointer">
@@ -42,7 +47,7 @@ export default function HomeView() {
               </button>
             </div>
           ) : (
-            <div className="flex flex-row]">
+            <div className="flex flex-row">
               <button
                 onClick={() => setActive(false)}
                 className="flex justify-center items-center relative bottom-[-43.5rem] right-[-75rem] bg-[#2f80ed] w-[2.5rem] h-[2.5rem] rounded-[50%] cursor-pointer">
