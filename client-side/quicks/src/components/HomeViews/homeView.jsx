@@ -1,3 +1,6 @@
+import ChatView from "../ChatViews/chatView";
+import TaskView from "../TaskViews/taskView";
+
 import { TfiBoltAlt } from "react-icons/tfi";
 import { GoSearch } from "react-icons/go";
 import { PiChatsDuotone } from "react-icons/pi";
@@ -12,11 +15,19 @@ export default function HomeView() {
         <div className="bg-[#4f4f4f] w-full">
           <div>
             <input
-              className="bg-[#828282] rounded w-full h-[2.5rem]"
+              className="bg-[#828282] rounded w-full h-[2.5rem] px-[4rem] text-white"
               type="text"
               name="search"
             />
             <GoSearch className="relative top-[-1.8rem] left-[1rem] text-white" />
+          </div>
+
+          {/* <div>
+            <ChatView />
+          </div> */}
+
+          <div>
+            <TaskView />
           </div>
 
           <div className="flex flex-row]">
