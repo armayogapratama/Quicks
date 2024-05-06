@@ -4,6 +4,7 @@ router.get("/", (req, res) => {
   res.send("hello world");
 });
 
-router.use("/user", require("./user"));
+router.use("/", require("./user"));
+router.use("/todo", require("./todo"));
 
 module.exports = router;

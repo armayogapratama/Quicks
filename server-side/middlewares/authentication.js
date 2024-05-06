@@ -1,6 +1,7 @@
+const { verifyToken } = require("../helpers/jwt");
 const User = require("../models/user");
 
-async function authentication(req, res) {
+async function authentication(req, res, next) {
   try {
     const token = req.headers.authorization;
 
@@ -16,9 +17,15 @@ async function authentication(req, res) {
 
     if (!user) throw { name: "InvalidUser" };
 
-    req.user = user;
+    req.user = {
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+    };
+
+    next();
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
 

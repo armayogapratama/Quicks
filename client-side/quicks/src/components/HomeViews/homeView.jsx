@@ -1,20 +1,43 @@
-import ChatView from "../ChatViews/chatView";
-import TaskView from "../TaskViews/taskView";
-
 import { TfiBoltAlt } from "react-icons/tfi";
 import { GoSearch } from "react-icons/go";
 import { PiChatsDuotone } from "react-icons/pi";
 import { FaTasks } from "react-icons/fa";
 import { useState } from "react";
-import MessageBoxView from "../MessageBoxViews/MessageBoxView";
+import { CiLogin } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export default function HomeView() {
+  const navigate = useNavigate();
   const [active, setActive] = useState(false);
+  const [isLogged, setIsLogged] = useOutletContext();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    setIsLogged(false);
+    navigate("/");
+  };
 
   return (
     <>
       <div className="flex flex-row gap-[.1rem]">
-        <div className="bg-[#4f4f4f] w-[13rem] h-[50.8rem]"></div>
+        <div className="bg-[#4f4f4f] w-[13rem] h-[50.8rem]">
+          {!isLogged ? (
+            <button
+              onClick={() => navigate("/login")}
+              className="flex flex-row bg-[#2f80ed] w-full py-2 rounded items-center justify-center gap-2 relative bottom-[-48rem]">
+              <CiLogin className="text-[#ffffff] text-2xl" />
+              <h3 className="text-white text-xl">Login</h3>
+            </button>
+          ) : (
+            <button
+              onClick={handleLogout}
+              className="flex flex-row bg-[#2f80ed] w-full py-2 rounded items-center justify-center gap-2 relative bottom-[-48rem]">
+              <CiLogout className="text-[#ffffff] text-2xl" />
+              <h3 className="text-white text-xl">Logout</h3>
+            </button>
+          )}
+        </div>
 
         <div className="bg-[#4f4f4f] w-full">
           <div>
@@ -24,18 +47,6 @@ export default function HomeView() {
               name="search"
             />
             <GoSearch className="relative top-[-1.8rem] left-[1rem] text-white" />
-          </div>
-
-          {/* <div>
-            <ChatView />
-          </div> */}
-
-          {/* <div>
-            <TaskView />
-          </div> */}
-
-          <div>
-            <MessageBoxView />
           </div>
 
           {!active ? (

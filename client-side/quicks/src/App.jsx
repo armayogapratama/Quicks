@@ -1,12 +1,9 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
-import HomeView from "./components/HomeViews/homeView";
+import router from "./routes/router";
 
 function App() {
-  return (
-    <>
-      <HomeView />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
