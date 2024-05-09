@@ -1,15 +1,83 @@
-import { FaRegUser } from "react-icons/fa6";
 import { FaAngleDown } from "react-icons/fa";
 import { FaAngleUp } from "react-icons/fa";
-import { BsThreeDots } from "react-icons/bs";
-import { MdOutlineWatchLater } from "react-icons/md";
-import { GoPencil } from "react-icons/go";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import TodoCard from "../TodoCards/todoCard";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTodoList } from "../../stores/slices/todoSlice";
+import axios from "axios";
 
 export default function TaskView() {
+  const myTodos = useSelector((state) => {
+    return state.todos.data;
+  });
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
   const drops = ["Personal Errands", "Urgent To-Do"];
 
   const [dropDown, setDropDown] = useState(false);
+  const [selected, setSelected] = useState(false);
+
+  const [status, setStatus] = useState({});
+
+  const { _id } = useParams();
+
+  useEffect(() => {
+    dispatch(fetchTodoList());
+    setSelected(false);
+  }, []);
+
+  const handleNewTodo = () => {
+    setSelected(true);
+    navigate("/todo/new-todo");
+  };
+
+  const fetchTodoDetail = async (_id) => {
+    try {
+      const { data } = await axios.get(`http://localhost:3000/todo/${_id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+
+      setStatus(data.todo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTodoDetail();
+  }, [_id]);
+
+  const handleStatus = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.patch(
+        `http://localhost:3000/todo/${_id}`,
+        {
+          status: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+          },
+        }
+      );
+
+      setStatus(data.todo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const change = (e) => {
+    setStatus({
+      ...status,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <>
@@ -37,65 +105,23 @@ export default function TaskView() {
           )}
 
           <div className="flex justify-center items-center hover:outline hover:outline-2 hover:outline-[#828282] hover:shadow-md bg-[#2f80ed] rounded px-2 w-[7rem] h-[2.5rem]">
-            <button className="text-white">New Task</button>
+            <button onClick={handleNewTodo} className="text-white">
+              New Task
+            </button>
           </div>
         </div>
 
         <div className="overflow-x-scroll my-[22px] mx-[32px]">
-          <div className="flex flex-row gap-1 mb-[22px] border-b pb-[22px] border-b-black">
-            <div className="flex flex-row">
-              <div className="flex flex-row justify-center mt-[.3rem] mr-[20px]">
-                <input
-                  className="size-4 bg-[#4f4f4f] text-[#4f4f4f] border-2 border-[#4f4f4f] cursor-pointer"
-                  type="checkbox"
-                  name="tasks"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <div className="flex flex-row gap-4 w-full">
-                <div className="flex w-[70%]">
-                  <h3 className="text-[#2f80ed]">
-                    Update My Application For Ready To Deploy
-                  </h3>
-                </div>
-
-                <div className="flex w-[20rem] gap-3 absolute right-[-2rem]">
-                  <h3 className="text-[#eb5757] text-[14px]">2 Days Left</h3>
-
-                  <h3 className="text-[#4f4f4f] opacity-65 text-[14px]">
-                    May 3,2024 19.48
-                  </h3>
-
-                  <div className="flex flex-row justify-center] gap-2">
-                    <FaAngleUp className="text-[#4f4f4f]" />
-
-                    <BsThreeDots className="text-[#4f4f4f]" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-row gap-4 items-center my-[14px]">
-                <MdOutlineWatchLater className="text-[#2f80ed]" />
-
-                <input
-                  className="border border-[#4f4f4f] cursor-pointer rounded p-[0.2rem] w-[10rem]"
-                  type="date"
-                  name="date"
-                />
-              </div>
-
-              <div className="flex flex-row gap-4 items-center">
-                <GoPencil className="text-[#2f80ed]" />
-
-                <p className="text-[14px] w-[80%]">
-                  Please check your whatsapp to get my message, because it is
-                  very important!
-                </p>
-              </div>
-            </div>
-          </div>
+          {selected ? (
+            <Outlet />
+          ) : (
+            <>
+              {myTodos.todos &&
+                myTodos.todos.map((todo, i) => {
+                  return <TodoCard key={i} todo={todo} />;
+                })}
+            </>
+          )}
         </div>
       </div>
     </>

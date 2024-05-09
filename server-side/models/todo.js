@@ -18,6 +18,19 @@ const todoSchema = new Schema({
   status: {
     type: Boolean,
     require: true,
+    default: false,
+  },
+  date: {
+    type: String,
+    require: true,
+  },
+  updatedAt: {
+    type: Date,
+    default: new Date(),
+  },
+  createdAt: {
+    type: Date,
+    default: new Date(),
   },
   userId: {
     type: ObjectId,

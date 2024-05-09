@@ -5,7 +5,7 @@ import { FaTasks } from "react-icons/fa";
 import { useState } from "react";
 import { CiLogin } from "react-icons/ci";
 import { CiLogout } from "react-icons/ci";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { Outlet, useNavigate, useOutletContext } from "react-router-dom";
 
 export default function HomeView() {
   const navigate = useNavigate();
@@ -49,6 +49,10 @@ export default function HomeView() {
             <GoSearch className="relative top-[-1.8rem] left-[1rem] text-white" />
           </div>
 
+          <div>
+            <Outlet />
+          </div>
+
           {!active ? (
             <div className="flex flex-row">
               <button
@@ -78,7 +82,9 @@ export default function HomeView() {
                 <h3 className="flex text-white text-[14px] justify-center items-center relative bottom-[-42rem] right-[-63rem]">
                   Tasks
                 </h3>
-                <button className="flex justify-center items-center relative bottom-[-42.2rem] right-[-63rem] bg-[#ffffff] w-[2.5rem] h-[2.5rem] rounded-[50%] cursor-pointer">
+                <button
+                  onClick={() => navigate("/todo")}
+                  className="flex justify-center items-center relative bottom-[-42.2rem] right-[-63rem] bg-[#ffffff] w-[2.5rem] h-[2.5rem] rounded-[50%] cursor-pointer">
                   <FaTasks className="text-[#f8b76b] text-lg" />
                 </button>
               </div>

@@ -1,11 +1,18 @@
+const { ObjectId } = require("mongodb");
 const Todo = require("../../models/todo");
 
 class TodoController {
   static async todoList(req, res) {
     try {
-      const { userId } = req.params;
+      const agg = [
+        {
+          $match: {
+            userId: new ObjectId(req.user._id),
+          },
+        },
+      ];
 
-      const todos = await Todo.find({ userId: userId });
+      const todos = await Todo.aggregate(agg);
 
       res.status(200).json({
         todos,
@@ -15,14 +22,30 @@ class TodoController {
     }
   }
 
+  static async todoDetail(req, res) {
+    try {
+      const { _id } = req.params;
+
+      const todo = await Todo.findById(_id);
+
+      if (!todo) throw { name: "InvalidTodo" };
+
+      res.status(200).json({
+        todo,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   static async createTodo(req, res) {
     try {
-      const { title, description } = req.body;
+      const { title, description, date } = req.body;
 
       const todo = await Todo.create({
         title,
         description,
-        status: false,
+        date,
         userId: req.user._id,
       });
 
@@ -38,9 +61,35 @@ class TodoController {
   static async updateTodo(req, res) {
     try {
       const { _id } = req.params;
-      console.log(_id, ">>>");
+      const { title, description, date } = req.body;
 
-      // const todo = await Todo.findById({ _id: _id });
+      const todo = await Todo.findByIdAndUpdate(
+        {
+          _id: _id,
+        },
+        {
+          title,
+          description,
+          date,
+        },
+        {
+          new: true,
+        }
+      );
+
+      if (!todo) throw { name: "InvalidTodo" };
+
+      res.status(200).json({
+        message: "Todo has been successfully updated",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  static async updateTodoStatus(req, res) {
+    try {
+      const { _id } = req.params;
 
       const todo = await Todo.findByIdAndUpdate(
         { _id: _id },
@@ -50,12 +99,8 @@ class TodoController {
 
       if (!todo) throw { name: "InvalidTodo" };
 
-      // await todo.updateOne({ status: true });
-
-      console.log(todo, "<<<");
-
       res.status(200).json({
-        message: "Todo has been successfully updated",
+        message: "Status has been successfully updated",
       });
     } catch (error) {
       console.log(error);

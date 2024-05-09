@@ -11,6 +11,10 @@ html {
   margin: 0;
 }
 
+.input-data {
+  color: #828282;
+}
+
 /* #root {
   --lato-regular {
     font-family: "Lato", sans-serif;
